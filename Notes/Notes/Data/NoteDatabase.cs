@@ -3,7 +3,7 @@
 // This File:        NoteDatabase.cs
 //
 // Author:           Mika Chang
-// Email:            mikacchang@wisc.edu
+// Email:            mikacchang@gmail.com
 ////////////////////////////////////////////////////////////////////////////////
 
 using System.Collections.Generic;
