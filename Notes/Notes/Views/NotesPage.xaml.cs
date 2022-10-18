@@ -14,6 +14,9 @@ using Notes.Models;
 using Xamarin.Forms;
 
 namespace Notes.Views {
+    /// <summary>
+    /// Class for the page where notes can viewed
+    /// </summary>
     public partial class NotesPage : ContentPage {
 
         public NotesPage() {
@@ -24,7 +27,7 @@ namespace Notes.Views {
         /// Method that defines behavior when the app appears, creating a data
         /// source for the CollectionView
         /// </summary>
-        protected override void OnAppearing() {
+        protected override async void OnAppearing() {
             base.OnAppearing();
 
             // Retrieve all notes from database and set as source for CollectionView.

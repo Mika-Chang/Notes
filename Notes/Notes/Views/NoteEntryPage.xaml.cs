@@ -1,4 +1,12 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////////////////////
+// Main File:		 App.xaml
+// This File:        NoteEntryPage.xaml.cs
+//
+// Author:           Mika Chang
+// Email:            mikacchang@gmail.com
+////////////////////////////////////////////////////////////////////////////////
+
+using System;
 using System.IO;
 using Notes.Models;
 using Xamarin.Forms;
@@ -19,42 +27,45 @@ namespace Notes.Views {
             BindingContext = new Note();
         }
 
-        void LoadNote(string filename) {
+        /// <summary>
+        /// Load a note given an id.
+        /// </summary>
+        /// <param name="itemId">the id of the note.</param>
+        async void LoadNote(string itemId) {
             try {
-                //Retrieve note and set as BindingContext of page.
-                Note note = new Note {
-                    Filename = filename,
-                    Text = File.ReadAllText(filename),
-                    Date = File.GetCreationTime(filename)
-                };
+                int id = Convert.ToInt32(itemId);
+                // Retrieve the note and set it as the BindingContext of the page.
+                Note note = await App.Database.GetNoteAsync(id);
                 BindingContext = note;
             } catch (Exception) {
                 Console.WriteLine("Failed to load note.");
             }
         }
 
+        /// <summary>
+        /// Save a given note when the save button is pressed.
+        /// </summary>
+        /// <param name="sender">the pressed button.</param>
+        /// <param name="e">additional event arguments.</param>
         async void OnSaveButtonClicked(object sender, EventArgs e) {
             var note = (Note)BindingContext;
-            if (string.IsNullOrWhiteSpace(note.Filename)) {
-                // Save the file
-                var filename = Path.Combine(App.FolderPath, $"{Path.GetRandomFileName()}.notes.txt");
-                File.WriteAllText(filename, note.Text);
-            } else {
-                // Update file.
-                File.WriteAllText(note.Filename, note.Text);
+            note.Date = DateTime.UtcNow;
+            if (!string.IsNullOrWhiteSpace(note.Text)) {
+                await App.Database.SaveNoteAsync(note);
             }
 
             // Navigate backwards
             await Shell.Current.GoToAsync("..");
         }
 
+        /// <summary>
+        /// Delete a given note when the delete button is pressed
+        /// </summary>
+        /// <param name="sender">the pressed button.</param>
+        /// <param name="e">event arguments.</param>
         async void OnDeleteButtonClicked(object sender, EventArgs e) {
             var note = (Note)BindingContext;
-
-            // Delete the file.
-            if (File.Exists(note.Filename)) {
-                File.Delete(note.Filename);
-            }
+            await App.Database.DeleteNoteAsync(note);
 
             // Navigate backwards
             await Shell.Current.GoToAsync("..");
