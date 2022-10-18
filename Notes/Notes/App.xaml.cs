@@ -1,5 +1,5 @@
 ﻿////////////////////////////////////////////////////////////////////////////////
-// Main File:		 App.xaml
+// Main File:		 App.xaml.cs
 // This File:        App.xaml.cs
 //
 // Author:           Mika Chang

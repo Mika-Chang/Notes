@@ -1,5 +1,5 @@
 ﻿////////////////////////////////////////////////////////////////////////////////
-// Main File:		 App.xaml
+// Main File:		 App.xaml.cs
 // This File:        NotesPage.xaml.cs
 //
 // Author:           Mika Chang
@@ -18,7 +18,9 @@ namespace Notes.Views {
     /// Class for the page where notes can viewed
     /// </summary>
     public partial class NotesPage : ContentPage {
-
+        /// <summary>
+        /// Class defining behavior of the page containing a list of notes.
+        /// </summary>
         public NotesPage() {
             InitializeComponent();
         }

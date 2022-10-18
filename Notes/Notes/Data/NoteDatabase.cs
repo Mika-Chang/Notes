@@ -1,5 +1,5 @@
 ﻿////////////////////////////////////////////////////////////////////////////////
-// Main File:		 App.xaml
+// Main File:		 App.xaml.cs
 // This File:        NoteDatabase.cs
 //
 // Author:           Mika Chang

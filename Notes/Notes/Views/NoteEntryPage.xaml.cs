@@ -1,5 +1,5 @@
 ﻿////////////////////////////////////////////////////////////////////////////////
-// Main File:		 App.xaml
+// Main File:		 App.xaml.cs
 // This File:        NoteEntryPage.xaml.cs
 //
 // Author:           Mika Chang
@@ -12,6 +12,9 @@ using Notes.Models;
 using Xamarin.Forms;
 
 namespace Notes.Views {
+    /// <summary>
+    /// Class defining the behavior of a page where a note is typed
+    /// </summary>
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public partial class NoteEntryPage: ContentPage {
         public string ItemId {
